@@ -1,5 +1,6 @@
+define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
 
-var XMLWriter = require('../');
+var XMLWriter = require('xml-writer/');
 exports['setUp'] = function (callback) {
 	this.xw = new XMLWriter;
 	callback();
@@ -60,3 +61,18 @@ exports['t06'] = function (test) {
 	test.equal(this.xw.toString(), '<!--<test>-->');
   test.done();
 };
+
+var assert = require("assert");
+var forOwn = require("lodash/forOwn");
+var testobj = function() {};
+testobj.equal = assert.equal;
+testobj.done = function() {};
+
+forOwn(exports, function(fun, key) {
+    print("test: " + key);
+    var obj = {};
+    exports.setUp.call(obj, testobj);
+    fun.call(obj, testobj);
+});
+
+return module.exports;});

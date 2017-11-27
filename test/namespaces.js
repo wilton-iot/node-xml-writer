@@ -1,4 +1,5 @@
-var XMLWriter = require('../');
+define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
+var XMLWriter = require('xml-writer/');
 exports['setUp'] = function (callback) {
 	this.xw = new XMLWriter();
 	callback();
@@ -75,3 +76,19 @@ exports['t09'] = function (test) {
 	test.equal(this.xw.toString(), '<?xml version="1.0"?>\n<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:cd="http://www.recshop.fake/cd#"><rdf:Description rdf:about="http://www.recshop.fake/cd/Empire Burlesque"><cd:artist>Bob Dylan</cd:artist><cd:country>USA</cd:country><cd:company>Columbia</cd:company><cd:price>10.90</cd:price><cd:year>1985</cd:year></rdf:Description></rdf:RDF>');
 	test.done();
 };
+
+var assert = require("assert");
+var forOwn = require("lodash/forOwn");
+var testobj = function() {};
+testobj.equal = assert.equal;
+testobj.throws = assert.throws;
+testobj.done = function() {};
+
+forOwn(exports, function(fun, key) {
+    print("test: " + key);
+    var obj = {};
+    exports.setUp.call(obj, testobj);
+    fun.call(obj, testobj);
+});
+
+return module.exports;});

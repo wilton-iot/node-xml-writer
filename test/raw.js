@@ -1,5 +1,5 @@
-var XMLWriter = require('../'),
-	fs = require('fs');
+define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
+var XMLWriter = require('xml-writer/')
 
 exports['t01'] = function (test) {
   this.xw = new XMLWriter( );
@@ -52,3 +52,18 @@ exports['t03'] = function (test) {
   test.equal(this.xw.toString(), '<?xml version="1.0" encoding="UTF-8"?>\n<foo><one>1</one><two>2</two></foo>');
   test.done();
 };
+
+var assert = require("assert");
+var forOwn = require("lodash/forOwn");
+var testobj = function() {};
+testobj.equal = assert.equal;
+testobj.throws = assert.throws;
+testobj.done = function() {};
+
+forOwn(exports, function(fun, key) {
+    print("test: " + key);
+    var obj = {};
+    fun.call(obj, testobj);
+});
+
+return module.exports;});

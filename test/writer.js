@@ -1,4 +1,5 @@
-var XMLWriter = require('../'),
+define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
+var XMLWriter = require('xml-writer/'),
 	fs = require('fs');
 
 exports['t01'] = function (test) {
@@ -14,3 +15,5 @@ exports['t01'] = function (test) {
 	this.xw.startDocument('1.0', 'UTF-8').startElement('foo').text('à l\'école !').endElement().endDocument();
 	ws.end();
 };
+
+return module.exports;});
