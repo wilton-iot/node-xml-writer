@@ -1,5 +1,5 @@
-define(function(){var require = WILTON_requiresync;var module = {exports: {}};var exports = module.exports;
-var XMLWriter = require('xml-writer/')
+define(function(localRequire, exports, module) { var requireOrig = require; require = localRequire;
+var XMLWriter = require('xml-writer')
 
 exports['t01'] = function (test) {
   this.xw = new XMLWriter( );
@@ -66,4 +66,4 @@ forOwn(exports, function(fun, key) {
     fun.call(obj, testobj);
 });
 
-return module.exports;});
+require = requireOrig;});
