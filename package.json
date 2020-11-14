@@ -48,7 +48,7 @@
   "wilton": {
     "excludes": [
         "test",
-        "runAllTests.js"
+        "test.js"
     ]
   }
 }
